@@ -1,0 +1,53 @@
+﻿@model MVCClient.Models.CabinetViewModel
+
+@{
+    ViewBag.Title = "title";
+}
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#profile" data-toggle="tab" onClick="ShowProfile()">My profile</a></li>
+    <li><a href="#absents" data-toggle="tab" onClick="ShowAbsents()">My absents</a></li>
+    <li><a href="#debts" data-toggle="tab" onClick="ShowDebts()">My debts</a></li>
+    <li><a href="#register" data-toggle="tab" onClick="ShowRegister()">My register</a></li>
+</ul>
+<div class="container" id="field">
+    @Html.Partial("ProfileTab")
+</div>
+<script>
+    function ShowProfile() {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("ProfileTab","Account")',
+            success: function (data) {
+                $('#field').html(data);
+            }
+        });
+    }
+    function ShowDebts() {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("DebtsTab","Account")',
+            success: function (data) {
+                $('#field').html(data);
+            }
+        });
+    } function ShowAbsents() {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AbsentsTab","Account")',
+            success: function (data) {
+                $('#field').html(data);
+            }
+        });
+    }
+    function ShowRegister() {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("RegisterTab","Account")',
+            success: function (data) {
+                $('#field').html(data);
+            }
+        });
+    }
+</script>
+

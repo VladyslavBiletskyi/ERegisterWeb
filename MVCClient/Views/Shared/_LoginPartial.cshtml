@@ -1,0 +1,24 @@
+﻿@{
+    string token = (Context.Request.Cookies["token"] != null) ? Context.Request.Cookies["token"].Value : null;
+}
+@if (token != null)
+{
+    using (Html.BeginForm("SignOut", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Cabinet", "Cabinet", "Account")</li>
+            <li>@Html.ActionLink("Log Out", "SignOut", "Account")</li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+
+        <li>@Html.ActionLink("Sign up", "SignUp", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Sign in", "SignIn", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+
+    </ul>
+}
