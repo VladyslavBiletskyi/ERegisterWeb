@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using MVCClient.Models;
+using MVCClient.Properties;
+using MVCClient.Util;
+using Newtonsoft.Json;
 
 namespace MVCClient.Controllers
 {
@@ -28,6 +32,7 @@ namespace MVCClient.Controllers
         [HttpPost]
         public ActionResult SignUp(SignUpViewModel model)
         {
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -54,6 +59,12 @@ namespace MVCClient.Controllers
         public ActionResult RegisterTab()
         {
             return PartialView();
+        }
+
+        public ActionResult GroupsPartial()
+        {
+            var model = (List<GroupViewModel>)HttpClientEngine.Get("api/Groups/Get");
+            return PartialView(model);
         }
     }
 }

@@ -8,7 +8,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>SignUpViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "This field is required", new { @class = "text-danger" })
         <div class="form-group">
@@ -38,8 +37,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Group, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select id="Group" name="Group" class="dropdown dropdown-toggle">
-                    <option>SE-14-5</option>
+                <select id="Group" name="Group" class="dropdown dropdown-toggle" onclick="FillGroups()">
+                    
                 </select>
                 @Html.ValidationMessageFor(model => model.Group, "", new { @class = "text-danger" })
             </div>
@@ -72,3 +71,15 @@
 <div>
     @Html.ActionLink("Back", "Index","Home");
 </div>
+<script>
+    function FillGroups() {
+        console.log("Filling");
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GroupsPartial", "Account")',
+            success: function(data) {
+                $('#Group').html(data);
+            }
+        });
+    }
+</script>

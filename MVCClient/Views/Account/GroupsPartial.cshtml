@@ -1,0 +1,5 @@
+﻿@model List<MVCClient.Models.GroupViewModel>
+    @foreach (var group in Model)
+    {
+        <option value="@group.Id">@group.Name</option>
+    }
