@@ -68,5 +68,23 @@ namespace MVCClient.Properties {
                 return ResourceManager.GetString("HostName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Error during signing in. Check login and password and try again.
+        /// </summary>
+        internal static string SignInError {
+            get {
+                return ResourceManager.GetString("SignInError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Error during signing up. Check fields and try again.
+        /// </summary>
+        internal static string SignUpError {
+            get {
+                return ResourceManager.GetString("SignUpError", resourceCulture);
+            }
+        }
     }
 }

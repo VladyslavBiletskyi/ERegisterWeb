@@ -121,4 +121,12 @@
     <value>http://localhost:55852/</value>
     <comment>Name and port of localhost</comment>
   </data>
+  <data name="SignInError" xml:space="preserve">
+    <value>Error during signing in. Check login and password and try again</value>
+    <comment>Error in SignIn method</comment>
+  </data>
+  <data name="SignUpError" xml:space="preserve">
+    <value>Error during signing up. Check fields and try again</value>
+    <comment>Error in SignUp method</comment>
+  </data>
 </root>
