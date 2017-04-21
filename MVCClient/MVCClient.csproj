@@ -200,6 +200,7 @@
     <Content Include="Views\Account\AbsentsTab.cshtml" />
     <Content Include="Views\Account\RegisterTab.cshtml" />
     <Content Include="Views\Account\GroupsPartial.cshtml" />
+    <Content Include="Views\Account\TeacherCabinet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

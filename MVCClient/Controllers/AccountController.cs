@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using MVCClient.Models;
 using MVCClient.Properties;
 using MVCClient.Util;
@@ -11,11 +12,12 @@ using Newtonsoft.Json;
 namespace MVCClient.Controllers
 {
     public class AccountController : Controller
-    {
+    {        
         public ActionResult Cabinet()
         {
             return View();
         }
+        
         public ActionResult SignIn()
         {
             return View();
@@ -41,6 +43,7 @@ namespace MVCClient.Controllers
                 if (responce.ContainsKey("access_token"))
                 {
                     HttpContext.Response.Cookies.Add(new HttpCookie("token", responce["access_token"]));
+                    HttpClientEngine.AccessToken = Request.Cookies.Get("token")?.Value;
                 }
                 else
                 {
@@ -55,10 +58,12 @@ namespace MVCClient.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+
         public ActionResult SignUp()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<ActionResult> SignUp(SignUpViewModel model)
         {
@@ -82,6 +87,7 @@ namespace MVCClient.Controllers
         [HttpPost]
         public async Task<ActionResult> ChangePassword(ChangePasswordModel model)
         {
+            HttpClientEngine.AccessToken = Request.Cookies.Get("token")?.Value;
             if (!ModelState.IsValid)
             {
                 ViewBag.Error = Resources.ChangePasswordError;
@@ -101,7 +107,7 @@ namespace MVCClient.Controllers
 
         public ActionResult SignOut()
         {
-
+            HttpClientEngine.AccessToken = "";
             Response.Cookies.Remove("token");
             HttpCookie c = new HttpCookie("token");
             c.Expires = DateTime.Now.AddDays(-1);
@@ -110,6 +116,7 @@ namespace MVCClient.Controllers
         }
         public ActionResult ProfileTab()
         {
+            HttpClientEngine.AccessToken = Request.Cookies.Get("token")?.Value;
             var model = HttpClientEngine.Get("api/Account/GetUserInfo", typeof(UserDetailsViewModel));
             return PartialView(model);
         }
@@ -119,6 +126,7 @@ namespace MVCClient.Controllers
         }
         public ActionResult AbsentsTab()
         {
+            HttpClientEngine.AccessToken = Request.Cookies.Get("token")?.Value;
             var model = HttpClientEngine.Get("api/Lessons/Absents", typeof(List<LessonViewModel>));
             return PartialView(model);
         }
@@ -129,6 +137,7 @@ namespace MVCClient.Controllers
 
         public ActionResult GroupsPartial()
         {
+            HttpClientEngine.AccessToken = Request.Cookies.Get("token")?.Value;
             var model = HttpClientEngine.Get("api/Groups/Get",typeof(List<GroupViewModel>));
             return PartialView(model);
         }
