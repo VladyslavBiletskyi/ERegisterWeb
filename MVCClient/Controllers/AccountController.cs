@@ -24,6 +24,11 @@ namespace MVCClient.Controllers
         [HttpPost]
         public async Task<ActionResult> SignIn(SignInViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Error = Resources.SignInError;
+                return View(model);
+            }
             var list = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>("grant_type", "password"),
@@ -44,7 +49,7 @@ namespace MVCClient.Controllers
             }
             catch
             {
-                ViewBag.Error = Resources.SignUpError;
+                ViewBag.Error = Resources.SignInError;
                 return View(model);
             }
             return RedirectToAction("Index", "Home");
@@ -57,6 +62,11 @@ namespace MVCClient.Controllers
         [HttpPost]
         public async Task<ActionResult> SignUp(SignUpViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Error = Resources.SignUpError;
+                return View(model);
+            }
             try
             {
                 await HttpClientEngine.Post("api/Account/Register", model);
@@ -67,6 +77,26 @@ namespace MVCClient.Controllers
                 return View(model);
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ChangePassword(ChangePasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Error = Resources.ChangePasswordError;
+                return RedirectToAction("Cabinet", "Account");
+            }
+            try
+            {
+                await HttpClientEngine.Post("api/Account/ChangePassword", model);
+                ViewBag.Error = "Password successfully changed";
+            }
+            catch
+            {
+                ViewBag.Error = Resources.ChangePasswordError;
+            }
+            return RedirectToAction("Cabinet", "Account");
         }
 
         public ActionResult SignOut()
@@ -80,7 +110,8 @@ namespace MVCClient.Controllers
         }
         public ActionResult ProfileTab()
         {
-            return PartialView();
+            var model = HttpClientEngine.Get("api/Account/GetUserInfo", typeof(UserDetailsViewModel));
+            return PartialView(model);
         }
         public ActionResult DebtsTab()
         {
@@ -88,7 +119,8 @@ namespace MVCClient.Controllers
         }
         public ActionResult AbsentsTab()
         {
-            return PartialView();
+            var model = HttpClientEngine.Get("api/Lessons/Absents", typeof(List<LessonViewModel>));
+            return PartialView(model);
         }
         public ActionResult RegisterTab()
         {

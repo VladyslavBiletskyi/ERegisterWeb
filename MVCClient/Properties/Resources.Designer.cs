@@ -61,6 +61,15 @@ namespace MVCClient.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Error during changing password. Check fields and try again.
+        /// </summary>
+        internal static string ChangePasswordError {
+            get {
+                return ResourceManager.GetString("ChangePasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на http://localhost:55852/.
         /// </summary>
         internal static string HostName {

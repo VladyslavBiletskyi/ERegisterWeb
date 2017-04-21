@@ -138,12 +138,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AbsentsViewModel.cs" />
-    <Compile Include="Models\CabinetViewModel.cs" />
+    <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\DebtsViewModel.cs" />
     <Compile Include="Models\GroupsViewModel.cs" />
+    <Compile Include="Models\LessonViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\SignInViewModel.cs" />
     <Compile Include="Models\SignUpViewModel.cs" />
+    <Compile Include="Models\UserDetailsViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

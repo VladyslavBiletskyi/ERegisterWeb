@@ -1,11 +1,20 @@
-﻿@model MVCClient.Models.AbsentsViewModel
+﻿@model List<MVCClient.Models.LessonViewModel>
     <div class="row">
-    <table class="table table-bordered col-md-8">
-        <tr>
-            <td>Subject</td>
-            <td>Date</td>
-            <td>Number of present</td>
-            <td>Average mark</td>
-        </tr>
-    </table>
+        <table class="table table-bordered col-md-8">            
+            <tr>
+                <td>Subject</td>
+                <td>Date</td>
+                <td>Number of present</td>
+                <td>Average mark</td>
+            </tr>
+            @foreach (var element in Model)
+            {
+                <tr>
+                    <td>@element.Subject</td>
+                    <td>@element.BeginigDateTime</td>
+                    <td>@element.NumberOfPresent</td>
+                    <td>@element.AverageMark</td>
+                </tr>
+            }
+        </table>
 </div>
