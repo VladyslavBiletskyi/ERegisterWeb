@@ -122,7 +122,7 @@
     <comment>Error in CHangePassword method</comment>
   </data>
   <data name="HostName" xml:space="preserve">
-    <value>http://localhost:55852/</value>
+    <value>http://localhost:50613/</value>
     <comment>Name and port of localhost</comment>
   </data>
   <data name="SignInError" xml:space="preserve">
