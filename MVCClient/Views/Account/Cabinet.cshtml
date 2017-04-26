@@ -9,7 +9,6 @@
     <li><a href="#register" data-toggle="tab" onClick="ShowRegister()">My register</a></li>
 </ul>
 <div class="container" id="field">
-    @Html.Partial("ProfileTab")
 </div>
 <script>
     function ShowProfile() {
@@ -41,7 +40,7 @@
     function ShowRegister() {
         $.ajax({
             type: "POST",
-            url: '@Url.Action("RegisterTab","Account")',
+            url: '@Url.Action("RegisterTab","Account",null)',
             success: function (data) {
                 $('#field').html(data);
             }

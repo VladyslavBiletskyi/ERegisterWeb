@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -122,7 +123,9 @@ namespace MVCClient.Controllers
         }
         public ActionResult DebtsTab()
         {
-            return PartialView();
+            HttpClientEngine.AccessToken = Request.Cookies.Get("token")?.Value;
+            var model = HttpClientEngine.Get("api/Lessons/Debts", typeof(List<LessonViewModel>));
+            return PartialView(model);
         }
         public ActionResult AbsentsTab()
         {
@@ -133,6 +136,14 @@ namespace MVCClient.Controllers
         public ActionResult RegisterTab()
         {
             return PartialView();
+        }
+
+        public ActionResult GetRegister(string date)
+        {
+            DateTime dateTime = DateTime.ParseExact(date, "yyyy-MM-dd", null);
+            HttpClientEngine.AccessToken = Request.Cookies.Get("token")?.Value;
+            var model = HttpClientEngine.Get("api/Lessons/Register", typeof(List<LessonViewModel>));
+            return PartialView("RegisterTab",((List<LessonViewModel>)model).Where(x=>x.BeginigDateTime.Date==dateTime.Date).ToList());
         }
 
         public ActionResult GroupsPartial()

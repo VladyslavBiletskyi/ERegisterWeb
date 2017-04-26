@@ -1,7 +1,7 @@
-﻿@model MVCClient.Models.RegisterViewModel
+﻿@model List<MVCClient.Models.LessonViewModel>
 <div class="row">
     <div class="col-md-1">
-        <input type="date" />
+        <input type="date" onchange="GetRegister($('#datePicker').val())" id="datePicker"/>
     </div>
     <table class="table table-bordered col-md-offset-2 col-md-8">
         <tr>
@@ -10,5 +10,28 @@
             <td>Number of present</td>
             <td>Average mark</td>
         </tr>
+        @if (Model != null)
+        {
+            foreach (var element in Model)
+             {
+                 <tr>
+                     <td>@element.Subject</td>
+                     <td>@element.Result</td>
+                     <td>@element.NumberOfPresent</td>
+                     <td>@element.AverageMark</td>
+                 </tr>
+             }
+        }
     </table>
 </div>
+<script>
+    function GetRegister(date) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetRegister", "Account",new{})'.concat('?date=' + date),
+            success: function(data) {
+                $('#field').html(data);
+            }
+        });
+    }
+</script>

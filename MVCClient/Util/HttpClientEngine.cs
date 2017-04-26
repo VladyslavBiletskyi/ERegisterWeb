@@ -22,6 +22,11 @@ namespace MVCClient.Util
             {
                 if (client != null)
                 {
+                    if (!String.IsNullOrEmpty(AccessToken))
+                    {
+                        client.DefaultRequestHeaders.Authorization =
+                            new AuthenticationHeaderValue("Bearer", AccessToken);
+                    }
                     return client;
                 }
                 else
