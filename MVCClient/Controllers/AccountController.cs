@@ -56,6 +56,8 @@ namespace MVCClient.Controllers
                 ViewBag.Error = Resources.SignInError;
                 return View(model);
             }
+            string role = (string)HttpClientEngine.Get("api/Account/GetRole", typeof(string));
+            HttpContext.Response.Cookies.Add(new HttpCookie("Role", role));
             return RedirectToAction("Index", "Home");
         }
 
