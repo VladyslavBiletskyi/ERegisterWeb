@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddLessonError" xml:space="preserve">
+    <value>Error while adding lesson. Check fields and try again</value>
+    <comment>Error in AddLesson method</comment>
+  </data>
   <data name="ChangePasswordError" xml:space="preserve">
     <value>Error during changing password. Check fields and try again</value>
     <comment>Error in CHangePassword method</comment>

@@ -134,12 +134,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LessonsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AbsentsViewModel.cs" />
+    <Compile Include="Models\AddLessonViewModel.cs" />
+    <Compile Include="Models\AddMarksViewModel.cs" />
     <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\DebtsViewModel.cs" />
+    <Compile Include="Models\LessonRegisterViewModel.cs" />
+    <Compile Include="Models\MarkViewModel.cs" />
+    <Compile Include="Models\StudentViewModel.cs" />
+    <Compile Include="Models\SubjectsViewModel.cs" />
     <Compile Include="Models\GroupsViewModel.cs" />
     <Compile Include="Models\LessonViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
@@ -201,6 +208,12 @@
     <Content Include="Views\Account\RegisterTab.cshtml" />
     <Content Include="Views\Account\GroupsPartial.cshtml" />
     <Content Include="Views\Account\TeacherCabinet.cshtml" />
+    <Content Include="Views\Lessons\AddLesson.cshtml" />
+    <Content Include="Views\Lessons\SubjectsPartial.cshtml" />
+    <Content Include="Views\Lessons\AddMark.cshtml" />
+    <Content Include="Views\Lessons\GetGroupsTable.cshtml" />
+    <Content Include="Views\Lessons\LessonsPartial.cshtml" />
+    <Content Include="Views\Lessons\StudentsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

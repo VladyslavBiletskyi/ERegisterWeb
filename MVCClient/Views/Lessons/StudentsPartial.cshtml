@@ -1,0 +1,18 @@
+﻿@model List<MVCClient.Models.StudentViewModel>
+ <table class="table table-bordered" name ="Marks">
+        <tr>
+            <td>Number</td>
+            <td>Name</td>
+            <td>Score</td>
+        </tr>
+        @for (int i = 0; i < Model?.Count(); i++)
+        {
+            <tr>
+                <td hidden><input name="Marks[@i].UserId" value="@Model[i].UserId"/></td>
+                <td>@(i + 1)</td>
+                <td><label>@Model[i].UserName</label></td>
+                <td><input type="number" name="Marks[@i].Score" /></td>
+            </tr>
+        }
+    </table>
+    <input type="submit" value="Save changes" />

@@ -1,0 +1,86 @@
+﻿@model MVCClient.Models.AddLessonViewModel
+<h2>Adding Lesson</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class = "control-label col-md-2">Subject</label>
+            <div class="col-md-10">
+                <select id="Subject" name="SubjectId" class="dropdown dropdown-toggle" onclick="FillSubjects()"></select>
+                @Html.ValidationMessageFor(model => model.SubjectId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Group</label>
+            <div class="col-md-10">
+                <select id="Group" name="GroupId" class="dropdown dropdown-toggle" onclick="FillGroups()"></select>
+                @Html.ValidationMessageFor(model => model.GroupId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Begining date and time</label>
+            <div class="col-md-10">
+                <input type="datetime" name="BeginingDateTime" />
+                @Html.ValidationMessageFor(model => model.BeginingDateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Room, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Room, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Room, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.ControllerId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ControllerId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ControllerId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div class="btn-block">
+    @Html.ActionLink("Back", "Index", "Home")
+</div>
+<script>
+    function FillGroups() {
+        console.log("Filling");
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GroupsPartial", "Account")',
+            success: function(data) {
+                $('#Group').html(data);
+                $('#Group').prop('onclick', null).off('click');
+
+            }
+        });
+    }
+    function FillSubjects() {
+        console.log("Filling");
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("SubjectsPartial", "Lessons")',
+            success: function(data) {
+                $('#Subject').html(data);
+                $('#Subject').prop('onclick', null).off('click');
+
+            }
+        });
+    }
+</script>

@@ -1,0 +1,6 @@
+﻿@model List<MVCClient.Models.LessonRegisterViewModel>
+@foreach (var element in Model)
+{
+    <option value="@element.LessonId">@element.BeginingDateTime</option>
+}
+

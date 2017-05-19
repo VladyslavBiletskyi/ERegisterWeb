@@ -1,0 +1,40 @@
+﻿@model List<MVCClient.Models.GroupViewModel>
+@{
+    ViewBag.Title = "GetGroupsTable";
+}
+
+<h2>Select subject</h2>
+@if (Model!=null && Model.Count != 0)
+{
+    foreach (var element in Model)
+    {
+        @Html.ActionLink(element.Name,"AddMark","Lessons",new { groupId = element.Id },null)
+    }
+}
+else
+{
+    using (Html.BeginForm())
+    {
+        <div class="form-group">
+            <label class="control-label col-md-2">Subject</label>
+            <div class="col-md-10">
+                <select id="Subject" name="SubjectId" class="dropdown dropdown-toggle" onclick="FillSubjects()"></select>
+            </div>
+        <input type="submit" class="btn btn-default" value="Select Subject"/>
+        </div>
+    }
+    <script>
+        function FillSubjects() {
+            console.log("Filling");
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SubjectsPartial", "Lessons",new{groupId=ViewBag.GroupId})',
+                success: function(data) {
+                    $('#Subject').html(data);
+                    $('#Subject').prop('onclick', null).off('click');
+                }
+            });
+        }
+    </script>
+
+}

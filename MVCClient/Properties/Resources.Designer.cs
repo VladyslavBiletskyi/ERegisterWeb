@@ -61,6 +61,15 @@ namespace MVCClient.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Error while adding lesson. Check fields and try again.
+        /// </summary>
+        internal static string AddLessonError {
+            get {
+                return ResourceManager.GetString("AddLessonError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Error during changing password. Check fields and try again.
         /// </summary>
         internal static string ChangePasswordError {

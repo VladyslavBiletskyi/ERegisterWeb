@@ -1,0 +1,5 @@
+﻿@model List<MVCClient.Models.SubjectViewModel>
+    @foreach (var subject in Model)
+    {
+        <option value="@subject.Id">@subject.Name</option>
+    }

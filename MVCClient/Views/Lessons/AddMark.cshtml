@@ -1,0 +1,24 @@
+﻿@model MVCClient.Models.AddMarksViewModel
+@{
+    ViewBag.Title = "Add Mark";
+}
+<h3>@ViewBag.Message</h3>
+@using (Html.BeginForm())
+{
+   @Html.HiddenFor(x=>x.LessonId,new {value=Model.LessonId})
+    <div id="Students">
+    
+    </div>
+}
+<script>
+    window.onload=function() {
+        console.log("Filling");
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("StudentsPartial", "Lessons", new {groupId=ViewBag.GroupId})',
+            success: function (data) {
+                $('#Students').replaceWith(data);
+            }
+        });
+    }
+</script>

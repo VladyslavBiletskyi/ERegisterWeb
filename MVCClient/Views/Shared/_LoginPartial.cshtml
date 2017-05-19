@@ -1,5 +1,6 @@
 ﻿@{
-    string token = (Context.Request.Cookies["token"] != null) ? Context.Request.Cookies["token"].Value : null;
+    string token = Context.Request.Cookies["token"]?.Value;
+    string role = Context.Request.Cookies["role"]?.Value;
 }
 @if (token != null)
 {
@@ -8,6 +9,11 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
+            @if (role == "Teacher")
+            {
+                <li>@Html.ActionLink("Add Mark", "GetGroupsTable", "Lessons")</li>
+                <li>@Html.ActionLink("Add Lesson", "AddLesson", "Lessons")</li>
+            }
             <li>@Html.ActionLink("Cabinet", "Cabinet", "Account")</li>
             <li>@Html.ActionLink("Log Out", "SignOut", "Account")</li>
         </ul>
