@@ -3,11 +3,6 @@
 @{
     ViewBag.Title = "SignUp";
 }
-@if (!String.IsNullOrWhiteSpace(ViewBag.Error))
-{
-   @Html.ShowError((string)ViewBag.Error);
-    ViewBag.Error = null;
-}
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()

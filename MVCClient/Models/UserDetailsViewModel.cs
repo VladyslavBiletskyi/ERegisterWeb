@@ -8,7 +8,7 @@ namespace MVCClient.Models
         [Display(Name = "Имя пользователя")]
         public string FirstName { get; set; }
         [Required]
-        [Display(Name = "фамилия пользователя")]
+        [Display(Name = "Фамилия пользователя")]
         public string LastName { get; set; }
         [Required]
         [Display(Name = "Группа")]
