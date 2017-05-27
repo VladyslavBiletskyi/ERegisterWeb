@@ -79,7 +79,7 @@ namespace MVCClient.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на http://localhost:50613/.
+        ///   Ищет локализованную строку, похожую на http://eregistersystem.azurewebsites.net/.
         /// </summary>
         internal static string HostName {
             get {
